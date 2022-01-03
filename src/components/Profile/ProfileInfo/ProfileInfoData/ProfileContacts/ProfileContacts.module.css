@@ -1,0 +1,40 @@
+.content {
+}
+.job{
+  display: flex;
+  justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.iconDiv {
+  box-shadow: inset -3px 2px 6px;
+  background-color: #2E6DA4;
+ 
+}
+.iconFrame{
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 6px;
+  margin: 10px;
+}
+.icon {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+.islooking {
+  box-shadow: 2px 2px 6px;
+  background-color: transparent;
+}
+.contacts{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

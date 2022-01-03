@@ -1,0 +1,47 @@
+.content {
+
+}
+.content button{
+  cursor: pointer;
+}
+.contentUser {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  border: 1px solid black;
+}
+.infoFoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.foto {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+}
+.foto img {
+  width: 100px;
+  height: 100px;
+}
+.about {
+}
+.info {
+  margin: 5px;
+}
+.info span {
+  font-weight: 600;
+}
+.currentPage {
+  font-weight: bold;
+}
+.paginator{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+.paginator button{
+  margin: 1px;
+}

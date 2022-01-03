@@ -1,0 +1,10 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 10px;
+  align-items: center;
+}
+
+.profileInfoData{
+  padding: 10px;
+}

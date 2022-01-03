@@ -1,0 +1,38 @@
+.nav{
+    grid-area: n;
+    color: black;
+    position: fixed;
+    top: 70px;
+    overflow: auto;
+    height: calc(100vh - 60px - 30px);
+    
+  }
+  .item{
+       text-transform: uppercase;
+       color: #000;
+       background-color: #d8e5e9;
+       border: 1px solid #d8e5e9;
+       border-radius: 5px;
+       margin: 0px 0px 10px 10px;
+     
+  }
+
+  .item:hover {
+    color: #FFF;
+    background-color: #337AB7;
+    border-color: #2E6DA4;
+    cursor: pointer;
+}
+.item a {
+    text-decoration: none;
+    color:black;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+.item a.activeLink{
+    background-color: #9aa4a7c7;
+    border: 1px solid #9aa4a7c7;
+    color:white;
+
+}

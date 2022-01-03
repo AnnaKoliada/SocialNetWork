@@ -1,0 +1,17 @@
+.footer{
+
+    background-color: aqua;
+    grid-area: f;
+    align-items: center;
+    font-size: 30x;
+    font-family: 'Architects Daughter', cursive;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  
+  }
+  .footerLogo a{
+    text-decoration: none;
+    color:  #2E6DA4;
+  }

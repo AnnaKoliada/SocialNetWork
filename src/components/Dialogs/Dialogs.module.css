@@ -1,0 +1,53 @@
+.content {
+  display: grid;
+  grid-template-areas:
+  "d m"
+  "nm nm" ;
+  
+  grid-template-columns: 5fr 7fr;
+  grid-template-rows: 2fr auto;
+  gap: 10px;
+  height: 100%;
+}
+.dialogsItems {
+  grid-area: d;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.messages {
+  grid-area: m;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.newMessage{
+  grid-area: nm;
+  display: flex;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.newMessage button{
+  border: none;
+  background-color: transparent;
+}
+.newMessage button .icon:hover{
+  cursor: pointer;
+  fill:#A8B2B5;
+  
+}
+.icon{
+width: 40px;
+height: 40px;
+}
+.newMessage textarea{
+  width: 50%;
+padding: 10px;
+  border: 2px solid black;
+  font-size: 20px;
+  
+ 
+}

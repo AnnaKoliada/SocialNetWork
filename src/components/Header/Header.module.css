@@ -1,0 +1,50 @@
+.header {
+  grid-area: h;
+  background-color: #61f0f0cc;
+  position: sticky;
+  top:0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}
+.logo {
+  font-family: "Architects Daughter", cursive;
+  /* font-family: 'Gwendolyn', cursive; */
+  font-size: 36px;
+  font-weight: bold;
+  padding: 8px 0 0 20px;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #2E6DA4;
+}
+.logo a,
+.loginBlock a {
+  text-decoration: none;
+  color:  #2E6DA4;
+  cursor: pointer;
+}
+.loginBlock {
+ margin: 0 20px;
+ font-family: "Architects Daughter", cursive;
+ font-size: 24px;
+ font-weight: bold;
+ text-decoration: none;
+ color:  #2E6DA4;
+}
+.foto{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+
+}
+.foto img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.name{
+  padding-left: 5px;
+}

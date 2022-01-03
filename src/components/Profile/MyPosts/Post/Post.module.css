@@ -1,0 +1,19 @@
+.post {
+    color: black;
+    display: block;
+    padding: 10px;
+    border: 1px solid rgba(154, 164, 167, 0.78);
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 15px;
+}
+.text {
+
+}
+.likeDislike{
+    text-align: end;
+}
+.likeDislike .icon:hover {
+    fill:#A8B2B5;
+    cursor: pointer;
+}
