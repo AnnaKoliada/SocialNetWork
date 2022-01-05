@@ -3,38 +3,20 @@ import { RouteComponentProps } from 'react-router-dom';
 import Header from './Header';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { setAuthUserAvatar, setAuthUserData } from '../../redux/auth-Reducer';
 import { IAuth } from '../../interface';
+import { setAuthUserData } from '../../redux/auth-Reducer';
 
 interface Props extends RouteComponentProps {
   isFetching: boolean;
-  setAuthUserData:( data: IAuth )=> { data: IAuth };
-  setAuthUserAvatar:( avatar:any )=> { avatar:any };
+  setAuthUserData:( )=> void;
 }
 
 class HeaderContainer extends React.Component<Props>{
   componentDidMount(): void {
-    console.log('jkkj');
-    axios
-      .get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-        withCredentials: true,
-      })
-      .then((response: { data: IAuth }) => {
-        console.log(response);
-        if (response.data.resultCode === 0){
-          this.props.setAuthUserData(response.data);
-          const id = response.data.data.id;
-          axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
-            .then((res) => {
-              console.log(res);
-              this.props.setAuthUserAvatar(res.data.photos.small);
-            });
-        }
-      });
+    this.props.setAuthUserData();
   }
 
   render() {
-    console.log('jjj');
     return ( <Header { ...this.props } />);
     
   }
@@ -49,4 +31,4 @@ const mapStateToProps = (state: { authReducer: IAuth } ) => {
 
 // connect(mapStateToProps)(HeaderContainerAPI);
 
-export default connect(mapStateToProps, { setAuthUserData, setAuthUserAvatar })(HeaderContainer);
+export default connect(mapStateToProps, { setAuthUserData } )(HeaderContainer);

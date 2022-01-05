@@ -1,4 +1,6 @@
+import { followAPI, userAPI } from '../api/api';
 import { IUser, IUserPage } from '../interface';
+import { updateDisabledFollowing, updateIsFetching } from './commonReducer';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -6,14 +8,12 @@ const SET_USERS = 'SET_USERS';
 const UPDATE_TOTALCOUNT = 'UPDATE_TOTALCOUNT';
 const UPDATE_PAGESIZE = 'UPDATE_PAGESIZE';
 const UPDATE_CURRENTPAGE = 'UPDATE_CURRENTPAGE';
-// const UPDATE_ISFETCHING = 'UPDATE_ISFETCHING';
 
 const initialState: IUserPage = {
   users: [],
   totalCount: null,
   pageSize: 10,
   currentPage: 1,
-  // isFetching: false,
 };
 
 const usersReducer = (
@@ -22,6 +22,15 @@ const usersReducer = (
 ): IUserPage => {
   switch (action?.type) {
     case FOLLOW:
+      console.log('follow', {
+        ...state,
+        users: state.users.map((u) => {
+          if (u.id === action.userId) {
+            return { ...u, followed: true };
+          }
+          return u;
+        }),
+      });
       return {
         ...state,
         users: state.users.map((u) => {
@@ -62,21 +71,16 @@ const usersReducer = (
         ...state,
         currentPage: action.number,
       };
-    // case UPDATE_ISFETCHING:
-    //   return {
-    //     ...state,
-    //     isFetching: action.isFetching,
-    //   };
     default:
       return state;
   }
 };
 
-export const follow = (userId: number): { type: string; userId: number } => ({
+export const followSuccess = (userId: number): { type: string; userId: number } => ({
   type: FOLLOW,
   userId,
 });
-export const unfollow = (userId: number): { type: string; userId: number } => ({
+export const unfollowSuccess = (userId: number): { type: string; userId: number } => ({
   type: UNFOLLOW,
   userId,
 });
@@ -96,8 +100,41 @@ export const updateCurrentPage = (number: number): { type: string; number: numbe
   type: UPDATE_CURRENTPAGE,
   number,
 });
-// export const updateIsFetching = (isFetching: boolean): { type: string; isFetching: boolean } => ({
-//   type: UPDATE_ISFETCHING,
-//   isFetching,
-// });
+
+export const  getUsers = (currentPage: string | number, pageSize: any)=>{
+  return (dispatch: (arg0: { type: string; isFetching?: boolean; users?: IUser[]; number?: number; }) => void) => {
+    dispatch(updateIsFetching(true));
+    userAPI.getUsers(currentPage, pageSize).then((response) => {
+      dispatch(updateIsFetching(false));
+      dispatch(setUsers(response.items));
+      dispatch(updateTotalCount(response.totalCount));
+    });
+  };
+};
+export const unFollow = (userId: number)=>{
+
+  return (dispatch: (arg0: any) => void)=>{
+    dispatch(updateDisabledFollowing(true, userId ));
+    followAPI.unfollow(userId).then(data=>{
+      if (data.resultCode === 0){
+        dispatch(unfollowSuccess(userId));
+      }
+    });
+    dispatch(updateDisabledFollowing(false, userId ));
+
+  };
+};
+export const follow = (userId: number)=>{
+
+  return (dispatch: (arg0: any) => void)=>{
+    dispatch(updateDisabledFollowing(true, userId ));
+    followAPI.follow(userId).then(data=>{
+      if (data.resultCode === 0){
+        dispatch(followSuccess(userId));
+      }
+    });
+    dispatch(updateDisabledFollowing(false, userId ));
+  };
+};
+
 export default usersReducer;

@@ -1,3 +1,4 @@
+import { authAPI, profileAPI } from '../api/api';
 import { IAuth } from '../interface';
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -28,15 +29,27 @@ const authReducer = (state = initialState, action: { type: string; data: IAuth; 
         ...state,
         avatar: action.avatar,
       };
-  
-     
     default:
       return state;
   }
   
 };
 
-export const setAuthUserData = (data: IAuth): { type: string, data: IAuth } => ({ type: SET_USER_DATA, data });
+export const setAuthUserDataSuccess = (data: IAuth): { type: string, data: IAuth } => ({ type: SET_USER_DATA, data });
 
-export const setAuthUserAvatar = (avatar: string): { type: string, avatar: string | null } =>({ type: SET_USER_DATA, avatar });
+export const setAuthUserAvatarSuccess = (avatar: string): { type: string, avatar: string | null } =>({ type: SET_USER_DATA, avatar });
+
+export const setAuthUserData = ()=>{
+  return (dispatch: (arg0: { type: string; data?: IAuth; avatar?: string | null; }) => void)=>{
+    authAPI.authMe().then(( data: IAuth ) => {
+      if (data.resultCode === 0){
+        dispatch(setAuthUserDataSuccess(data));
+        const id = data.data.id;
+        profileAPI.getProfile(id).then((dates) => {
+          dispatch(setAuthUserAvatarSuccess(dates.photos.small));
+        });
+      }
+    });
+  };
+};
 export default authReducer;

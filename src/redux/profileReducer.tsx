@@ -1,4 +1,6 @@
+import { profileAPI } from '../api/api';
 import { IUserData, IPost } from '../interface';
+import { updateIsFetching } from './commonReducer';
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -46,13 +48,25 @@ const profileReducer = (
 };
 
 export const addPostActionCreator = (): { type: string } => ({ type: ADD_POST });
+
 export const updateNewPostTextCreator = (text: string): { type: string; newText: string } => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
 });
+
 export const setUserProfileData = (data: IUserData): { type: string; data: IUserData } => ({
   type: SET_USER_PROFILE_DATA,
   data,
 });
 
+export const getUserProfileData = (userId: number | null)=>{
+  return (dispatch: (arg0: { type: string; isFetching?: boolean; data?: IUserData; }) => void)=>{
+    dispatch(updateIsFetching(true));
+    profileAPI.getProfile(userId)
+      .then((data) => {
+        dispatch(setUserProfileData(data));
+        dispatch(updateIsFetching(false));
+      });
+  };
+};
 export default profileReducer;

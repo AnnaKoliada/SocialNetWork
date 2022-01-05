@@ -6,14 +6,15 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 interface Props extends IUserPage {
-  follow: (id: number) => void;
-  unfollow: (id: number) => void;
   updatePageSize: (number: number) => void;
-  setCurrentPage: (number: number | string, pagesCount: number | null) => void;
+  setCurrentPage: (number: number | string, pagesCount: number | null ) => void;
   setPageSize: (number: number) => void;
+  unFollow: (arg0: number) => void;
+  follow: (arg0: number) => void;
+  isDisabledFollowing: [] | number[];
 }
 
-const UsersAPIComponent = (props: Props): JSX.Element => {
+const Users = (props: Props): JSX.Element => {
   let pagesCount: number | null;
   const pages: string[] | number[] = [];
   if (props.totalCount) {
@@ -38,9 +39,7 @@ const UsersAPIComponent = (props: Props): JSX.Element => {
       pages[6] = '...';
       pages[7] = pagesCount;
       pages[8] = '>';
-    }
-    // }
-    // }
+    } 
   }
   return (
     <div className={s.content}>
@@ -55,9 +54,11 @@ const UsersAPIComponent = (props: Props): JSX.Element => {
               </div>
               <div className={s.followed}>
                 {u.followed ? (
-                  <button onClick={() => props.unfollow(u.id)}>Unfollowed</button>
+                  <button disabled={props.isDisabledFollowing.some((id: number)=>id === u.id)} onClick={() => {
+                    props.unFollow(u.id);
+                  }}>Unfollowed</button>
                 ) : (
-                  <button onClick={() => props.follow(u.id)}>Followed</button>
+                  <button disabled={props.isDisabledFollowing.some((id: number)=>id === u.id)} onClick={() =>{props.follow(u.id);}}>Followed</button>
                 )}
               </div>
             </div>
@@ -67,13 +68,11 @@ const UsersAPIComponent = (props: Props): JSX.Element => {
               </div>
               <div className={s.info}>
                 <span>Last name: </span>
-                {/* {props.user.lastName} */}
               </div>
-              <div className={s.info}>{/* <span>City: </span> {props.user.location.city} */}</div>
+              <div className={s.info}></div>
 
               <div className={s.info}>
                 <span>Country: </span>
-                {/* {props.user.location.country} */}
               </div>
             </div>
           </div>
@@ -108,4 +107,4 @@ const UsersAPIComponent = (props: Props): JSX.Element => {
     </div>
   );
 };
-export default UsersAPIComponent;
+export default Users;

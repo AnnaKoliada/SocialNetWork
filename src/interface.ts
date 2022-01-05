@@ -24,6 +24,11 @@ export interface IUser {
   status: null
   uniqueUrlName: null
 }
+export interface IUsers{
+  items: IUser[],
+  totalCount: number,
+  error: null | number,
+}
 export interface IUserPage{
   users: IUser[] | [];
   totalCount: number | null;
@@ -64,3 +69,13 @@ export interface IAuth {
   isAuth: boolean,
   avatar: string | null,
 }
+export interface IFollow {
+  
+  resultCode: number
+  messages: string[],
+  data: any,
+}
+export interface ICommon {
+  isFetching: boolean,
+  isDisabledFollowing: number[] | [],
+} 
