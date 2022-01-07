@@ -45,3 +45,7 @@
 .paginator button{
   margin: 1px;
 }
+.disabled{
+  pointer-events: none;
+  background-color: chartreuse;
+}

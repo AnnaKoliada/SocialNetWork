@@ -17,7 +17,9 @@ function ProfileInfo(props: any): JSX.Element {
           )
         ) : null}
       </div>
+     
       <div className={s.profileInfoData}>
+      
       {props.userData ?  <ProfileInfoData {...props}/> : null}
       </div>
     </div>

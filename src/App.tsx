@@ -12,6 +12,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileComponent from './components/Profile/ProfileComponent';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 const App = (props: any): JSX.Element => {
   return (
@@ -31,6 +32,7 @@ const App = (props: any): JSX.Element => {
             <Route path="/news" render={() => <News />} />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/settings" render={() => <Settings />} />
+            <Route path="/login" render={() => <Login />} />
           </Switch>
         </div>
 

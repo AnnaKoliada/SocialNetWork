@@ -14,11 +14,13 @@ import cn from 'classnames';
 import vk from '../../../../assets/images/vk.png';
 import ProfileContacts from './ProfileContacts/ProfileContacts';
 import { Link } from 'react-router-dom';
+import Status from './Status/Status';
 
 function ProfileInfoData(props: any) {
   return props.userData ? (
     <div className={s.content}>
-      <div>{props.userData.fullName}</div>
+      <div className={s.fullname}><h1>{props.userData.fullName}</h1></div>
+     <Status />
       <div>{props.userData.aboutMe}</div>
       <div className={s.job}>
         <div

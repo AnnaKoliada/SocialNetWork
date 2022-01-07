@@ -13,6 +13,7 @@ const commonReducer = (
   state = initialState,
   action: { type: string; isFetching: boolean; isDisabledFollowing: boolean; id: number; },
 ): ICommon => {
+  console.log(state);
   switch (action?.type) {
     case UPDATE_IS_FETCHING:
       return {

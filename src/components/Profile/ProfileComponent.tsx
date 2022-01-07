@@ -6,6 +6,8 @@ import { withRouter } from 'react-router';
 import { IUserData } from '../../interface';
 import { updateIsFetching } from '../../redux/commonReducer';
 import { profileAPI } from '../../api/api';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../hok/withAuthRedirect';
 
 interface Props {
   userData: IUserData,
@@ -41,6 +43,12 @@ const mapStateToProps = (state: any) =>{
   };
 };
 
-const WithRouterProfileComponent = withRouter(ProfileComponent);
+export default compose(
+  connect(mapStateToProps, { getUserProfileData }),
+  withAuthRedirect,
+  withRouter,
+)(ProfileComponent) as React.ComponentType;
 
-export default connect(mapStateToProps, { getUserProfileData })(WithRouterProfileComponent);
+// const WithRouterProfileComponent = withRouter(ProfileComponent);
+
+// export default connect(mapStateToProps, { getUserProfileData })(WithRouterProfileComponent);

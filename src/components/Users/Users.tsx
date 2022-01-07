@@ -53,13 +53,14 @@ const Users = (props: Props): JSX.Element => {
                </NavLink> 
               </div>
               <div className={s.followed}>
-                {u.followed ? (
-                  <button disabled={props.isDisabledFollowing.some((id: number)=>id === u.id)} onClick={() => {
+                   {u.followed ? (
+                 
+                  <button disabled={props.isDisabledFollowing.some((id: number)=> id === u.id)} onClick={() => {
                     props.unFollow(u.id);
                   }}>Unfollowed</button>
-                ) : (
+                   ) : (
                   <button disabled={props.isDisabledFollowing.some((id: number)=>id === u.id)} onClick={() =>{props.follow(u.id);}}>Followed</button>
-                )}
+                   )}
               </div>
             </div>
             <div className={s.about}>
